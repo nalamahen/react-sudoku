@@ -1,7 +1,8 @@
-import {createGlobalStyle} from 'styled-components'
+import {createGlobalStyle, css} from 'styled-components'
 
 
-export default createGlobalStyle `
+export default createGlobalStyle`
+${({ theme }) => css`
 html {
     height: 100%;
 
@@ -12,8 +13,8 @@ html {
         margin: 0;
 
         #root {
-            background: radial-gradient(#282c34cc, #282c34);
-            color: '#282c34';
+            background: ${theme.colors.background};
+            color: ${theme.colors.black};
             display: flex;
             font-family: sans-serif;            
             height: 100%;
@@ -22,4 +23,5 @@ html {
         }
     }
 }
+`}
 `
