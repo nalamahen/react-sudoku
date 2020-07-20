@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { unregister } from './core'
+import { unregister } from './core';
+import { Globalstyles} from './styles'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
+    <Globalstyles />
     <h2>Hello World</h2>
-  </React.StrictMode>,
+ </>,
   document.getElementById('root')
 );
 
