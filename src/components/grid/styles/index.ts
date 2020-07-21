@@ -23,8 +23,8 @@ export const Row = styled.div`
       }
     }
 
-    &:nth-child(10) {
-      border-top: solid 30px ${theme.colors.black};
+    &:nth-child(9) {
+      border-bottom: solid 3px ${theme.colors.black};
     }
 
     div {
