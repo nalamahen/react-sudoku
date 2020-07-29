@@ -1,17 +1,12 @@
 import { GRID, NUMBERS } from 'typings';
-import { isInCol, isInRow, shuffle } from 'utils';
-
-const gridExample: GRID = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
+import {
+  checkGrid,
+  identifySquare,
+  isInCol,
+  isInRow,
+  isInSquare,
+  shuffle,
+} from 'utils';
 
 const numbers: NUMBERS[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -35,25 +30,20 @@ function fillGrid(grid: GRID) {
         if (!isInRow({ grid, row, value })) {
           // is it not in grid col
           if (!isInCol({ col, grid, value })) {
-            const square = [
-              [0, 0, 0],
-              [0, 0, 0],
-              [0, 0, 0],
-            ];
-
-            // is it not in the grid square?
-            //....... if this is the case
-
-            //......
-            grid[row][col] = value;
-            // check grid if it is full, if yes, stop and return true
-            // otherwise we run the fillGrid(grid) again
+            const square = identifySquare({ col, grid, row });
+            if (!isInSquare({ square, value })) {
+              grid[row][col] = value;
+              // check grid if it is full, if yes, stop and return true
+              if (checkGrid(grid)) return true;
+              // otherwise we run the fillGrid(grid) again
+              else if (fillGrid(grid)) return true;
+            }
           }
         }
       }
       break;
     }
   }
+  grid[row][col] = 0;
 }
-
 export default fillGrid;
